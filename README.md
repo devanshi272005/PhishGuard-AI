@@ -126,3 +126,22 @@ Improved explainable AI
 More advanced ML models
 Real-time security alerts
 
+---
+
+## 📸 Screenshots
+
+### 🏠 Dashboard
+
+![PhishGuard AI Dashboard](screenshots/Screenshot%202026-09-09%20164353.png)
+
+### 🔗 Phishing URL Detection
+
+![URL Detection](screenshots/Screenshot%202026-09-09%20164423.png)
+
+### 📱 SMS Scam Detection
+
+![SMS Scam Detection](screenshots/Screenshot%202026-09-09%20164720.png)
+
+### 🧠 Explainable Detection
+
+![Detection Explanation](screenshots/Screenshot%202026-09-09%20164732.png)
