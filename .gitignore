@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Environment / Secrets
+.env
+.env.*
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# Vite build
+frontend/dist/
+
+# Python generated files
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+# Large / unused ML files
+ml/datasets/phiusiil.csv
+ml/phishing_url_model.pkl
+ml/url_phishing_model.pkl
+ml/raw_url_phishing_model_backup.pkl
