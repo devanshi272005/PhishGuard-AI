@@ -63,7 +63,7 @@ function App() {
   const fetchScanHistory = async () => {
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/scan-history"
+        "https://phishguardai-backend-j05x.onrender.com/api/scan-history"
       );
 
       const data = await response.json();
@@ -143,7 +143,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/scan-history",
+        "https://phishguardai-backend-j05x.onrender.com/api/scan-history",
         {
           method: "DELETE",
         }
@@ -235,7 +235,7 @@ try {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/analyze-url",
+        "https://phishguardai-backend-j05x.onrender.com/api/analyze-url",
         {
           method: "POST",
           headers: {
@@ -290,7 +290,7 @@ try {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/analyze-sms",
+        "https://phishguardai-backend-j05x.onrender.com/api/analyze-sms",
         {
           method: "POST",
           headers: {
@@ -351,95 +351,172 @@ try {
 
       <main className="container">
 
-        {/* ================= DASHBOARD ================= */}
-        <section className="dashboard">
+  {/* ================= DASHBOARD ================= */}
+  <section className="dashboard">
 
-          <h2>Dashboard</h2>
+    <div className="dashboard-header">
+      <div>
+        <h2>Security Dashboard</h2>
+        <p>Real-time overview of your phishing and scam detection activity</p>
+      </div>
 
-          <div className="dashboard-cards">
+      <div className="dashboard-status">
+        <span className="status-dot"></span>
+        System Protected
+      </div>
+    </div>
 
-            <div className="dashboard-card">
-              <span>🔗</span>
-              <h3>URLs Analyzed</h3>
-              <strong>{urlCount}</strong>
-            </div>
 
-            <div className="dashboard-card">
-              <span>🚨</span>
-              <h3>Phishing Detected</h3>
-              <strong>{phishingCount}</strong>
-            </div>
+    {/* ================= DASHBOARD CARDS ================= */}
+    <div className="dashboard-cards">
 
-            <div className="dashboard-card">
-              <span>💬</span>
-              <h3>Messages Analyzed</h3>
-              <strong>{messageCount}</strong>
-            </div>
+      {/* URLs */}
+      <div className="dashboard-card security-card">
 
-            <div className="dashboard-card">
-              <span>⚠️</span>
-              <h3>Scams Detected</h3>
-              <strong>{scamCount}</strong>
-            </div>
+        <div className="card-top">
+          <span className="card-icon">🔗</span>
+          <span className="card-status">URL SCANS</span>
+        </div>
 
-          </div>
+        <h3>URLs Scanned</h3>
 
-          {/* Detection Summary */}
-          <div className="detection-summary">
+        <strong>{urlCount}</strong>
 
-            <div className="summary-header">
-              <h3>🛡️ Detection Summary</h3>
-              <p>
-                Overview of detected online threats
-              </p>
-            </div>
+        <p>Websites analyzed by AI</p>
 
-            <div className="summary-stats">
+      </div>
 
-              <div className="summary-item">
-                <span>Phishing Rate</span>
 
-                <strong>
-                  {urlCount > 0
-                    ? (
-                        (phishingCount /
-                          urlCount) *
-                        100
-                      ).toFixed(1)
-                    : "0"}
-                  %
-                </strong>
-              </div>
+      {/* PHISHING */}
+      <div className="dashboard-card threat-card">
 
-              <div className="summary-item">
-                <span>Scam Rate</span>
+        <div className="card-top">
+          <span className="card-icon">🚨</span>
+          <span className="card-status">THREATS</span>
+        </div>
 
-                <strong>
-                  {messageCount > 0
-                    ? (
-                        (scamCount /
-                          messageCount) *
-                        100
-                      ).toFixed(1)
-                    : "0"}
-                  %
-                </strong>
-              </div>
+        <h3>Phishing Detected</h3>
 
-              <div className="summary-item">
-                <span>Total Threats</span>
+        <strong>{phishingCount}</strong>
 
-                <strong>
-                  {phishingCount +
-                    scamCount}
-                </strong>
-              </div>
+        <p>Malicious URLs detected</p>
 
-            </div>
-          </div>
+      </div>
 
-        </section>
 
+      {/* MESSAGES */}
+      <div className="dashboard-card message-card">
+
+        <div className="card-top">
+          <span className="card-icon">💬</span>
+          <span className="card-status">MESSAGE SCANS</span>
+        </div>
+
+        <h3>Messages Scanned</h3>
+
+        <strong>{messageCount}</strong>
+
+        <p>SMS & messages analyzed</p>
+
+      </div>
+
+
+      {/* SCAMS */}
+      <div className="dashboard-card scam-card">
+
+        <div className="card-top">
+          <span className="card-icon">⚠️</span>
+          <span className="card-status">ALERTS</span>
+        </div>
+
+        <h3>Scams Detected</h3>
+
+        <strong>{scamCount}</strong>
+
+        <p>Potential scam messages</p>
+
+      </div>
+
+    </div>
+
+
+    {/* ================= DETECTION SUMMARY ================= */}
+    <div className="detection-summary">
+
+      <div className="summary-header">
+
+        <div>
+          <h3>🛡️ Detection Summary</h3>
+
+          <p>
+            Overview of threats identified by PhishGuard AI
+          </p>
+        </div>
+
+      </div>
+
+
+      <div className="summary-stats">
+
+        <div className="summary-item">
+
+          <span>Phishing Rate</span>
+
+          <strong>
+            {urlCount > 0
+              ? ((phishingCount / urlCount) * 100).toFixed(1)
+              : "0"}
+            %
+          </strong>
+
+        </div>
+
+
+        <div className="summary-item">
+
+          <span>Scam Rate</span>
+
+          <strong>
+            {messageCount > 0
+              ? ((scamCount / messageCount) * 100).toFixed(1)
+              : "0"}
+            %
+          </strong>
+
+        </div>
+
+
+        <div className="summary-item">
+
+          <span>Total Threats</span>
+
+          <strong>
+            {phishingCount + scamCount}
+          </strong>
+
+        </div>
+
+
+        <div className="summary-item">
+
+          <span>Security Status</span>
+
+          <strong className="secure-status">
+            {phishingCount + scamCount === 0
+              ? "SECURE"
+              : "MONITOR"}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  {/* ================= SCAN HISTORY ================= */}
         {/* ================= SCAN HISTORY ================= */}
         <div className="history-section">
 
@@ -609,37 +686,49 @@ try {
 
               </div>
 
-              <div className="result-details">
+             <div className="result-details">
 
-                <div className="detail-box">
+  <div className="detail-box phishing-detail">
+    <div className="detail-label">
+      <span className="detail-icon">🚨</span>
+      <span>Phishing Probability</span>
+    </div>
 
-                  <span>
-                    Phishing Probability
-                  </span>
+    <strong>
+      {urlResult.phishing_probability}%
+    </strong>
 
-                  <strong>
-                    {
-                      urlResult.phishing_probability
-                    }%
-                  </strong>
+    <div className="probability-bar">
+      <div
+        className="probability-fill phishing-fill"
+        style={{
+          width: `${urlResult.phishing_probability}%`
+        }}
+      ></div>
+    </div>
+  </div>
 
-                </div>
+  <div className="detail-box legitimate-detail">
+    <div className="detail-label">
+      <span className="detail-icon">🛡️</span>
+      <span>Legitimate Probability</span>
+    </div>
 
-                <div className="detail-box">
+    <strong>
+      {urlResult.legitimate_probability}%
+    </strong>
 
-                  <span>
-                    Legitimate Probability
-                  </span>
+    <div className="probability-bar">
+      <div
+        className="probability-fill legitimate-fill"
+        style={{
+          width: `${urlResult.legitimate_probability}%`
+        }}
+      ></div>
+    </div>
+  </div>
 
-                  <strong>
-                    {
-                      urlResult.legitimate_probability
-                    }%
-                  </strong>
-
-                </div>
-
-              </div>
+</div>
 
               <div className="analyzed-value">
 
